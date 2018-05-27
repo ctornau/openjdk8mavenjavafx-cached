@@ -81,22 +81,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>sonar</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<sonar.host.url>https://sepp-sonar.inf.h-brs.de</sonar.host.url>
-				<sonar.projectKey>tornau-loesungen</sonar.projectKey>
-				<sonar.login>20f6be86c087911fb97ee7d97e7221e9e57cc1e1</sonar.login>
-				<sonar.coverage.exclusions>src/main/java/de/hbrs/todolistmanager/controller/TodoListViewController.java,
-					src/main/java/de/hbrs/todolistmanager/controller/ResizingListener.java,
-					src/main/java/de/hbrs/todolistmanager/view/DatePropertyValueFactory.java,
-					src/main/java/de/hbrs/todolistmanager/TodoListManager.java
-				</sonar.coverage.exclusions>
-			</properties>
-		</profile>
-	</profiles>
 </project>
