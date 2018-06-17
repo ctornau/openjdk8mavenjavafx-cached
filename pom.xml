@@ -40,6 +40,54 @@
 			<version>8u76-b04</version> <!-- 8u76-b04 for Java 8 / jdk-9+181 for Java 9 -->
 			<scope>test</scope>
 		</dependency>
+		<!-- WELD DEPENDENCIES -->
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se-core</artifactId>
+			<version>3.0.4.Final</version>
+		</dependency>
+		<!-- HIBERNATE DEPENDENCIES -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.11.1.1</version>
+		</dependency>
+		<!-- JAXB DEPENDENCIES -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -68,8 +116,11 @@
 						<exclude>de/hbrs/todolistmanager/controller/TodoListViewController.class</exclude>
 						<exclude>de/hbrs/todolistmanager/controller/TodoListViewController$1.class</exclude>
 						<exclude>de/hbrs/todolistmanager/controller/TodoListViewController$2.class</exclude>
+						<exclude>de/hbrs/todolistmanager/controller/TodoListViewController$3.class</exclude>
+						<exclude>de/hbrs/todolistmanager/controller/DetailController.class</exclude>
+						<exclude>de/hbrs/todolistmanager/controller/LatestFinishDateController.class</exclude>
+						<exclude>de/hbrs/todolistmanager/controller/PriorityController.class</exclude>
 						<exclude>de/hbrs/todolistmanager/controller/ResizingListener.class</exclude>
-						<exclude>de/hbrs/todolistmanager/view/DatePropertyValueFactory.class</exclude>
 						<exclude>de/hbrs/todolistmanager/TodoListManager.class</exclude>
 					</excludes>
 				</configuration>
@@ -81,4 +132,24 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>https://sepp-sonar.inf.h-brs.de</sonar.host.url>
+				<sonar.projectKey>tornau-loesungen</sonar.projectKey>
+				<sonar.login>${env.sonartoken}</sonar.login>
+				<sonar.coverage.exclusions>src/main/java/de/hbrs/todolistmanager/controller/TodoListViewController.java,
+				    src/main/java/de/hbrs/todolistmanager/controller/DetailController.java,
+				    src/main/java/de/hbrs/todolistmanager/controller/LatestFinishDateController.java,
+				    src/main/java/de/hbrs/todolistmanager/controller/PriorityController.java,
+					src/main/java/de/hbrs/todolistmanager/controller/ResizingListener.java,
+					src/main/java/de/hbrs/todolistmanager/TodoListManager.java
+				</sonar.coverage.exclusions>
+			</properties>
+		</profile>
+	</profiles>
 </project>
